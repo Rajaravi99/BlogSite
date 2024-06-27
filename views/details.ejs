@@ -1,0 +1,37 @@
+<html lang="en">
+<%- include("./partials/header.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%=blogs.title%></h2>
+    <div class="content">
+        <p><%=blogs.body%></p>
+    </div>
+    <a class="update" data-doc="<%= blogs._id %>" href="/blogs/e/<%= blogs._id %>"><button>update</button></a>
+    <a class="delete" data-doc="<%= blogs._id %>">delete</a>
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+  <script>
+    const trashcan = document.querySelector('a.delete');
+    trashcan.addEventListener('click', (e) => {
+    const endpoint = `/blogs/${trashcan.dataset.doc}`;
+    fetch(endpoint, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => window.location.href = data.redirect)
+    .catch(err => console.log(err));
+    });
+
+    // to create a get request for edit page with specific id
+    // const updateData = document.querySelector('a.update');
+    // updateData.addEventListener('click', (e) => {
+    // const pt = `/blogs/e/${updateData.dataset.doc}`;
+    // fetch(pt,{method:'GET'});});
+
+  </script>
+</body>
+</html>
