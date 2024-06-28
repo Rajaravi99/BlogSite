@@ -7,9 +7,10 @@
   <div class="details content">
     <h2><%=blogs.title%></h2>
     <div class="content">
-        <p><%=blogs.body%></p>
+        <p><h3>Blog Snippet</h3><%=blogs.snippet%></p>
+        <p><h3>Blog Body</h3><%=blogs.body%></p>
     </div>
-    <a class="update" data-doc="<%= blogs._id %>" href="/blogs/e/<%= blogs._id %>"><button>update</button></a>
+    <a class="update" data-doc="<%= blogs._id %>" href="/blogs/e/<%= blogs._id %>"><button>Edit Blog</button></a>
     <a class="delete" data-doc="<%= blogs._id %>">delete</a>
   </div>
 

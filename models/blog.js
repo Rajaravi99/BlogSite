@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const Schema=mongoose.Schema;
+const Schema=mongoose.Schema; // creating Schema
 const blogSchema=new Schema({
     title:{
         type:String,
@@ -9,11 +9,11 @@ const blogSchema=new Schema({
         type:String,
         required:true
     },
-    body: {
+    body:{
         type:String,
         required:true
     },
 },{timestamps:true});
-
+// exporting model of the schema created
 const blog=mongoose.model('blog', blogSchema);
 module.exports=blog;
