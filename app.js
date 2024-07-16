@@ -9,7 +9,7 @@ const app = express(); // create express app
 const dbURI=process.env.db; // new to add hexadecimal if password include special characters
 mongoose.connect(dbURI) // connecting to the database and then listening on port 3000
     .then((result)=>{
-        app.listen(3000); // listening at port 3000
+        app.listen(process.env.PORT || 3000); // listening at port 3000
         console.log('connected to DB');
     })
     .catch((err)=>{
