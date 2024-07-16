@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'); // require express
 const mongoose=require('mongoose'); // require mongoose for connecting to MongoDB
 const morgan=require('morgan'); // required morgan for creating middlewares
@@ -5,7 +6,7 @@ const blogRoutes=require('./routes/blogRoutes');// required for creating express
 const userRoutes=require('./routes/userRoutes'); // required for creating authentication routes
 const Blog=require('./models/blog'); // required blog schema and model
 const app = express(); // create express app
-const dbURI='mongodb+srv://ravinandanray99:Rajaravi%4099@db1-blogswebsite.jnp6x0m.mongodb.net/'; // new to add hexadecimal if password include special characters
+const dbURI=process.env.db; // new to add hexadecimal if password include special characters
 mongoose.connect(dbURI) // connecting to the database and then listening on port 3000
     .then((result)=>{
         app.listen(3000); // listening at port 3000
