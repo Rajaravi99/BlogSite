@@ -2,6 +2,7 @@ const express = require('express'); // require express
 const mongoose=require('mongoose'); // require mongoose for connecting to MongoDB
 const morgan=require('morgan'); // required morgan for creating middlewares
 const blogRoutes=require('./routes/blogRoutes');// required for creating express router
+const userRoutes=require('./routes/userRoutes'); // required for creating authentication routes
 const Blog=require('./models/blog'); // required blog schema and model
 const app = express(); // create express app
 const dbURI='mongodb+srv://ravinandanray99:Rajaravi%4099@db1-blogswebsite.jnp6x0m.mongodb.net/'; // new to add hexadecimal if password include special characters
@@ -22,7 +23,8 @@ app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
 });
-app.use(blogRoutes);
+app.use(blogRoutes); // for creating blogroutes
+app.use(userRoutes); // for creating authentication and user login and signup
 app.set('view engine','ejs'); // set the view engine as express.JS
 // creating various routes
 app.get('/', (req,res) =>{
