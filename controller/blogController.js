@@ -1,4 +1,5 @@
 const Blog=require('../models/blog');
+const User=require('../models/user');
 
 const blog_edit_get=(req,res) =>{
     Blog.findById(req.params.id)
