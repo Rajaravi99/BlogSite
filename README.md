@@ -1,1 +1,3 @@
-This branch is created for development of node.js authentication using passport.js packega, once the authentication will be done the branch will be merged to master and deployed.
+The live and working website link -   https://blogsite-r2mj.onrender.com
+
+The website is deployed on a free service so, it may take around 50 or more seconds to respond initilaly.
