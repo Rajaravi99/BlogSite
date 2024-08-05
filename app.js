@@ -18,7 +18,9 @@ var server=app.listen(process.env.PORT || 3000); // listening at port 3000
 console.log('connected to DB');
 // socketsetup on serverside
 const io=socket(server,{
-    
+    cors:{
+        option:'http://localhost:3000',
+    }
 });
 io.on('connection',(socket)=>{
     console.log('made socket connection',socket.id);
