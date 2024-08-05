@@ -1,5 +1,5 @@
 // Query DOM
-const socket=io('http://localhost:3000');
+const socket=io('https://blogsite-r2mj.onrender.com');
 var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
