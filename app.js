@@ -8,17 +8,29 @@ const blogRoutes=require('./routes/blogRoutes');// required for creating express
 const userRoutes=require('./routes/userRoutes'); // required for creating authentication routes
 const Blog=require('./models/blog'); // required blog schema and model
 const User=require('./models/user.js'); // required user schems if needed
+const socket=require('socket.io'); // require socket to create websockets for chatroom
+const chatRoutes=require('./routes/chatRoutes'); // required for creating chatroom for fun
 const {initialisingPassport}=require('./passportConfig.js');
 const app = express(); // create express app
 const dbURI=process.env.db; // new to add hexadecimal if password include special characters
 mongoose.connect(dbURI) // connecting to the database and then listening on port 3000
-    .then((result)=>{
-        app.listen(process.env.PORT || 3000); // listening at port 3000
-        console.log('connected to DB');
-    })
-    .catch((err)=>{
-        console.log(err);
+var server=app.listen(process.env.PORT || 3000); // listening at port 3000
+console.log('connected to DB');
+// socketsetup on serverside
+const io=socket(server,{
+    
+});
+io.on('connection',(socket)=>{
+    console.log('made socket connection',socket.id);
+    // Handle chat event
+    socket.on('chat', function(data){
+        io.sockets.emit('chat', data);// listining to all the sockets connected to the server for now
     });
+    socket.on('typing', function(data){
+        socket.broadcast.emit('typing', data);
+    });
+});
+
 
 // creating middlewares
 initialisingPassport(passport);
@@ -34,6 +46,7 @@ app.use((req, res, next) => {
 });
 app.use(blogRoutes); // for creating blogroutes
 app.use(userRoutes); // for creating authentication and user login and signup
+app.use(chatRoutes); // for creating chatroom
 app.set('view engine','ejs'); // set the view engine as express.JS
 // creating various routes
 app.get('/', (req,res) =>{
@@ -56,3 +69,4 @@ app.get('/about', (req,res) =>{
 app.use((req,res) =>{
     res.status(404).render('404',{title: '404'});
 });
+
