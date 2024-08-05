@@ -19,7 +19,7 @@ console.log('connected to DB');
 // socketsetup on serverside
 const io=socket(server,{
     cors:{
-        option:'http://localhost:3000',
+        option:'https://blogsite-r2mj.onrender.com',
     }
 });
 io.on('connection',(socket)=>{
