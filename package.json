@@ -4,6 +4,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "socket.io": "^4.7.5",
-    "socket.io-client": "^4.7.5"
+    "socket.io-client": "^4.7.5",
+    "webpack": "^5.93.0"
   }
 }
