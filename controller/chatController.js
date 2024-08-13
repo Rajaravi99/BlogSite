@@ -1,5 +1,7 @@
+const User=require('../models/user');
 const chat_get=(req,res)=>{
-    res.render('chat/chat');
+    //console.log(req.user);
+    res.render('chat/chat',{user:req.user});
 };
 
 module.exports={

@@ -33,7 +33,7 @@ exports.initialisingPassport=(passport)=>{
 
 exports.isAuthenticated=(req,res,next)=>{
     if(req.user){
-        return next();
+        return next(req.userName);
     }
     res.redirect('/login');
 };
