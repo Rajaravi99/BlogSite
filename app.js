@@ -23,12 +23,12 @@ const io=socket(server,{
     }
 });
 io.on('connection',(socket)=>{
-    console.log('made socket connection',socket.id);
+    console.log(socket.id);
     // Handle chat event
-    socket.on('chat', function(data){
+    socket.on('chat', (data)=>{
         io.sockets.emit('chat', data);// listining to all the sockets connected to the server for now
     });
-    socket.on('typing', function(data){
+    socket.on('typing', (data)=>{ // broadcasting to all the sockets connected to the server 
         socket.broadcast.emit('typing', data);
     });
 });
@@ -39,7 +39,7 @@ initialisingPassport(passport);
 app.use(express.static('public')); // to use public folder to store middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // middleware to parse json bodies
-app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false'}));
+app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false', cookie:{_expires : 300000}}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use((req, res, next) => {

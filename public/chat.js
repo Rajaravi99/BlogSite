@@ -8,7 +8,7 @@ var message = document.getElementById('message'),
       feedback = document.getElementById('feedback');
 
 // Emit events
-btn.addEventListener('click', function(){
+btn.addEventListener('click',()=>{
     socket.emit('chat', {
         message: message.value,
         handle: handle.value
@@ -16,7 +16,7 @@ btn.addEventListener('click', function(){
     message.value = "";
 });
 
-message.addEventListener('keypress', function(){
+message.addEventListener('keypress',()=>{
     socket.emit('typing', handle.value);
 });
 // listen to events comming from server side
