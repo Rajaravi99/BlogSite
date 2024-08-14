@@ -16,6 +16,14 @@ const dbURI=process.env.db; // new to add hexadecimal if password include specia
 mongoose.connect(dbURI) // connecting to the database and then listening on port 3000
 var server=app.listen(process.env.PORT || 3000); // listening at port 3000
 console.log('connected to DB');
+// creating middlewares
+initialisingPassport(passport);
+app.use(express.static('public')); // to use public folder to store middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // middleware to parse json bodies
+app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false', cookie:{_expires : 300000}}));
+app.use(passport.initialize());
+app.use(passport.session());
 // socketsetup on serverside
 const io=socket(server,{
     cors:{
@@ -33,15 +41,6 @@ io.on('connection',(socket)=>{
     });
 });
 
-
-// creating middlewares
-initialisingPassport(passport);
-app.use(express.static('public')); // to use public folder to store middlewares
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // middleware to parse json bodies
-app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false', cookie:{_expires : 300000}}));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
