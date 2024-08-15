@@ -16,6 +16,14 @@ const dbURI=process.env.db; // new to add hexadecimal if password include specia
 mongoose.connect(dbURI) // connecting to the database and then listening on port 3000
 var server=app.listen(process.env.PORT || 3000); // listening at port 3000
 console.log('connected to DB');
+// creating middlewares
+initialisingPassport(passport);
+app.use(express.static('public')); // to use public folder to store middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // middleware to parse json bodies
+app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false', cookie:{_expires : 300000}}));
+app.use(passport.initialize());
+app.use(passport.session());
 // socketsetup on serverside
 const io=socket(server,{
     cors:{
@@ -23,25 +31,16 @@ const io=socket(server,{
     }
 });
 io.on('connection',(socket)=>{
-    console.log('made socket connection',socket.id);
+    console.log(socket.id);
     // Handle chat event
-    socket.on('chat', function(data){
+    socket.on('chat', (data)=>{
         io.sockets.emit('chat', data);// listining to all the sockets connected to the server for now
     });
-    socket.on('typing', function(data){
+    socket.on('typing', (data)=>{ // broadcasting to all the sockets connected to the server 
         socket.broadcast.emit('typing', data);
     });
 });
 
-
-// creating middlewares
-initialisingPassport(passport);
-app.use(express.static('public')); // to use public folder to store middlewares
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // middleware to parse json bodies
-app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false'}));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use((req, res, next) => {
     res.locals.path = req.path;
     next();

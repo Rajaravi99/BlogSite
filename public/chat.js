@@ -1,5 +1,6 @@
 // Query DOM
-const socket=io('https://blogsite-r2mj.onrender.com');
+const socket=io('https://blogsite-r2mj.onrender.com'); // in production 
+// const socket=io('http://localhost:3000'); // in development testing
 var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
@@ -7,7 +8,7 @@ var message = document.getElementById('message'),
       feedback = document.getElementById('feedback');
 
 // Emit events
-btn.addEventListener('click', function(){
+btn.addEventListener('click',()=>{
     socket.emit('chat', {
         message: message.value,
         handle: handle.value
@@ -15,7 +16,7 @@ btn.addEventListener('click', function(){
     message.value = "";
 });
 
-message.addEventListener('keypress', function(){
+message.addEventListener('keypress',()=>{
     socket.emit('typing', handle.value);
 });
 // listen to events comming from server side
