@@ -21,7 +21,7 @@ initialisingPassport(passport);
 app.use(express.static('public')); // to use public folder to store middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // middleware to parse json bodies
-app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false'}));
+app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false',cookie:{maxAge:300000}}));
 app.use(passport.initialize());
 app.use(passport.session());
 // socketsetup on serverside
