@@ -54,7 +54,13 @@ app.get('/', (req,res) =>{
     // need to find the blog from MongoDB and then send to index page for parshing
     Blog.find().sort({ createdAt: -1 })
         .then((result)=>{
-            res.render('index', { blogs: result, title: 'All blogs'});
+            User.find()
+            .then((user)=>{
+                res.render('index', { blogs: result, title: 'All blogs', users:user});
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
         })
         .catch((err)=>{
             console.log(err);
