@@ -21,7 +21,7 @@ h2{
     box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
     border-radius: 15px;
 }
-#map-location{
+#leafletmap{
     width: 49%;
     background-color: rgb(228, 223, 241);
     border: 1px solid #b27676;
