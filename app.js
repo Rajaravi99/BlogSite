@@ -39,8 +39,14 @@ io.on('connection',(socket)=>{
     socket.on('typing', (data)=>{ // broadcasting to all the sockets connected to the server 
         socket.broadcast.emit('typing', data);
     });
+    // handle connection event
+    socket.on('send-location',(data)=>{
+        io.emit('receive-location',{
+            id:socket.id,
+            ...data
+        });
+    });
 });
-
 app.use((req, res, next) => {
     res.locals.path = req.path;
     next();
