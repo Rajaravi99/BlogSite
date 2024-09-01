@@ -12,6 +12,7 @@ const socket=require('socket.io'); // require socket to create websockets for ch
 const chatRoutes=require('./routes/chatRoutes'); // required for creating chatroom for fun
 const {initialisingPassport}=require('./passportConfig.js');
 const app = express(); // create express app
+const flash = require('connect-flash'); // for alerting the user if he is loggein or loggeout
 const dbURI=process.env.db; // new to add hexadecimal if password include special characters
 mongoose.connect(dbURI) // connecting to the database and then listening on port 3000
 var server=app.listen(process.env.PORT || 3000); // listening at port 3000
@@ -21,9 +22,10 @@ initialisingPassport(passport);
 app.use(express.static('public')); // to use public folder to store middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // middleware to parse json bodies
-app.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false',cookie:{maxAge:300000}}));
+app.use(expressSession({secret:'secret', resave:'true', saveUninitialized:'false',cookie:{maxAge:300000}}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 // socketsetup on serverside
 const io=socket(server,{
     cors:{
@@ -57,20 +59,24 @@ app.use(chatRoutes); // for creating chatroom
 app.set('view engine','ejs'); // set the view engine as express.JS
 // creating various routes
 app.get('/', (req,res) =>{
-    // need to find the blog from MongoDB and then send to index page for parshing
-    Blog.find().sort({ createdAt: -1 })
+    if(req.user===undefined){
+        Blog.find().sort({ createdAt: -1 })
         .then((result)=>{
-            User.find()
-            .then((user)=>{
-                res.render('index', { blogs: result, title: 'All blogs', users:user});
-            })
-            .catch((err)=>{
-                console.log(err);
-            });
+            res.render('index', { blogs: result, title: 'All blogs',message: req.flash('info')});
         })
         .catch((err)=>{
             console.log(err);
         });
+    }
+    else{
+        Blog.find().sort({ createdAt: -1 })
+        .then((result)=>{
+            res.render('index', { blogs: result, title: 'All blogs',message: req.flash('info')});
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
+    }
 });
 
 app.get('/about', (req,res) =>{
