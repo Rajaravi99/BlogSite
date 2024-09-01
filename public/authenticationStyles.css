@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flexbox;
+    flex-direction: column;
 }
 
 body {
@@ -9,7 +11,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
+    background-color: rgb(110, 135, 135);
 }
 
 
@@ -26,39 +28,54 @@ h2 {
     border-radius: 5px;
   }
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+.form-group {
+  margin-bottom: 15px;
+}
 
-  .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
 
-  .form-group input {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
 
-  .submit-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #472dbb;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #472dbb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  .submit-btn:hover {
-    background-color: #4565a0;
-  }
+.submit-btn:hover {
+  background-color: #4565a0;
+}
 
-  p {
-    margin-top: 15px;
-  }
+p {
+  margin-top: 15px;
+}
+footer{
+  padding-top: 10vh;
+}
+footer form{
+  text-align: center;
+}
+footer button{
+  border-width: 3px;
+  color: #120649;
+  transition-duration: 0.5s;
+}
+footer button:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
