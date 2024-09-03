@@ -1,5 +1,9 @@
+const user = require('../models/user');
 const User=require('../models/user');
+const Blog=require('../models/blog');
 const bcrypt=require('bcrypt');
+const flash = require('connect-flash');
+const { reduce } = require('lodash');
 
 const user_login_get=(req,res)=>{
     res.render('authentication/login',{title:'Login Form'});
@@ -27,12 +31,20 @@ const user_signup_post=async(req,res)=>{
 }
 
 const user_loggedIn=async(req,res)=>{
-    res.redirect('/');
+    Blog.find().sort({ createdAt: -1 })
+        .then((result)=>{
+            req.flash('info', 'You are loggedin!');
+            res.redirect('/');
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
 }
 
 const user_loggedOut=(req,res,next)=>{
-    req.logOut((err)=>{
+    req.logOut((err,user)=>{
         if (err) { return next(err); }
+        req.flash('info', 'You are loggedOut!');
         res.redirect('/');
     });
 }
