@@ -11,8 +11,9 @@
   <div class="details content">
     <h2><%=blogs.title%></h2>
     <div class="content">
-        <p><h3>Blog Snippet</h3><%=blogs.snippet%></p>
-        <p><h3>Blog Body</h3><%=blogs.body%></p>
+        <p><h3><b>Blog Snippet</b></h3><%=blogs.snippet%></p>
+        <p><h3><b>Blog Body</b></h3><%=blogs.body%></p>
+        <p><h3><b>Author's_Name</b></h3><%=blogs.author%></p>
     </div>
     <a class="update" data-doc="<%= blogs._id %>" href="/blogs/e/<%= blogs._id %>"><button>Edit Blog</button></a>
     <a class="delete" data-doc="<%= blogs._id %>">delete</a>
@@ -30,13 +31,7 @@
     .then(data => window.location.href = data.redirect)
     .catch(err => console.log(err));
     });
-
-    // to create a get request for edit page with specific id
-    // const updateData = document.querySelector('a.update');
-    // updateData.addEventListener('click', (e) => {
-    // const pt = `/blogs/e/${updateData.dataset.doc}`;
-    // fetch(pt,{method:'GET'});});
-
+    
   </script>
 </body>
 </html>
