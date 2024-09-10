@@ -1,6 +1,7 @@
 
 const localStrategy=require('passport-local').Strategy;
 const User=require('./models/user.js');
+const flash=require('connect-flash');
 
 exports.initialisingPassport=(passport)=>{
     // use it like a tamplet code
@@ -35,5 +36,8 @@ exports.isAuthenticated=(req,res,next)=>{
     if(req.user){
         return next(req.userName);
     }
-    res.redirect('/login');
+    else{
+        req.flash('info', 'Please login!')
+        res.redirect('/login');
+    }
 };

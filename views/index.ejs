@@ -1,31 +1,10 @@
 <html lang="en">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<%- include("./partials/header.ejs") %>
-
+  <%- include("./partials/header.ejs") %>
 <body>
   <%- include("./partials/nav.ejs") %>
-  <% if (message.length != 0) { %>
-    <div class="container">
-     <div class="alert alert-<%=message[1]%> w-50" id="myAlert" role="alert">
-       <div class="row">
-        <div class="col-10 text-center mt-1">
-         <%= message[0] %>
-        </div>
-        <div class="col-2">
-         <button class="btn btn-link" id="close"><i class="fa-solid fa-xmark"></i></button>
-         
-        </div>
-       </div>
-     </div>  
-    </div>
-   <% } %>
 </div>
   <div class="blogs content">
     <h2>All Blogs</h2>
-
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(blog => { %>
         <a class="single" href="/blogs/<%=blog._id%>">
@@ -39,21 +18,13 @@
       <p>There are no blogs to display...</p>
     <% } %>
 
-    <p>Total number of blogs on this site are: <%=blogs.length%></p>
+    <p>Total number of blogs on this site are: <%=blogs.length %></p>
   <%- include("./partials/footer.ejs") %>
-  <script>
- 
-    function vanish(){
-     $('#myAlert').fadeOut('fast');
-    }
-   
-    $("#close").click(vanish)
-   
-    $(document).ready(function () {   
-      setTimeout(function () {
-        vanish()
-      }, 3000);
-    });
-     </script>
+     <script>
+      let message='<%- message %>';
+      if(message){
+        alert(message);
+      }
+      </script>
 </body>
 </html>
