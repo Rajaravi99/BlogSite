@@ -6,7 +6,7 @@ const flash = require('connect-flash');
 const { reduce } = require('lodash');
 
 const user_login_get=(req,res)=>{
-    res.render('authentication/login',{title:'Login Form'});
+    res.render('authentication/login',{message: req.flash('info')[0], title:'Login Form'});
 }
 
 const user_signup_get=(req,res)=>{
@@ -33,7 +33,7 @@ const user_signup_post=async(req,res)=>{
 const user_loggedIn=async(req,res)=>{
     Blog.find().sort({ createdAt: -1 })
         .then((result)=>{
-            req.flash('info', 'You are loggedin!');
+            req.flash('info', 'WoooHooo!!! you are loggedin');
             res.redirect('/');
         })
         .catch((err)=>{
@@ -44,7 +44,7 @@ const user_loggedIn=async(req,res)=>{
 const user_loggedOut=(req,res,next)=>{
     req.logOut((err,user)=>{
         if (err) { return next(err); }
-        req.flash('info', 'You are loggedOut!');
+        req.flash('info', '!!! you are loggedout');
         res.redirect('/');
     });
 }
