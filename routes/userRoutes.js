@@ -5,9 +5,11 @@ const expressSession=require('express-session');
 const {initialisingPassport,isAuthenticated}=require('../passportConfig.js');
 const  userController=require('../controller/userController');
 const User=require('../models/user');
+const flash=require('connect-flash');
 router.use(expressSession({secret:'secret', resave:'false', saveUninitialized:'false'}));
 router.use(passport.initialize());
 router.use(passport.session());
+router.use(flash());
 
 router.get('/login',userController.user_login_get);
 router.get('/signup',userController.user_signup_get);

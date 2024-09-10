@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/authenticationStyles.css">
+    <script>
+      let message='<%- message %>';
+      if(message){
+        alert(message);
+      }
+    </script>
 </head>
 <body>
-
     <div class="form-container">
         <h2>Login</h2>
         <form action="/login" method="post">
