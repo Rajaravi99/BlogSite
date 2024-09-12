@@ -10,6 +10,6 @@ ejs - as a templet engine for frontend
 passport.js - for user authentication (Login and signup)
 socket.io(web socket) - for creating realtime connection for chatroom
 
-Each and everyone, is welcomed to contribute in this project. Please have a good look on the source code, raise issues and bugs tery to solve i will review and merge it
+Each and everyone, is welcomed to contribute in this project. Please have a good look on the source code, raise issues and bugs tery to solve i will review and merge it.
 
 Please go through the dependencies in the package.json file to run the web app.
