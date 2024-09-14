@@ -12,7 +12,6 @@
             <p class="snippet"><%= blog.snippet %></p>
             <p class="snippet"><p><b>Author's_Name</b></p><%= blog.author %></p>
         </a>
-
       <% }) %>
     <% } else { %>
       <p>There are no blogs to display...</p>
@@ -21,10 +20,8 @@
     <p>Total number of blogs on this site are: <%=blogs.length %></p>
   <%- include("./partials/footer.ejs") %>
      <script>
-      let message='<%- message %>';
-      if(message){
-        alert(message);
-      }
+        let message='<%- message %>';
+        if(message){alert(message);}
       </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ const passport=require('passport'); // required passport for authentication stre
 const expressSession=require('express-session');
 const blogRoutes=require('./routes/blogRoutes');// required for creating express router
 const userRoutes=require('./routes/userRoutes'); // required for creating authentication routes
+const paymentRoutes=require('./routes/paymentRoutes');
 const Blog=require('./models/blog'); // required blog schema and model
 const User=require('./models/user.js'); // required user schems if needed
 const socket=require('socket.io'); // require socket to create websockets for chatroom
@@ -29,7 +30,7 @@ app.use(flash());
 // socketsetup on serverside
 const io=socket(server,{
     cors:{
-        option:'http://localhost:3000',
+        option:`http://localhost:${process.env.PORT}`,
     }
 });
 io.on('connection',(socket)=>{
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 app.use(blogRoutes); // for creating blogroutes
 app.use(userRoutes); // for creating authentication and user login and signup
 app.use(chatRoutes); // for creating chatroom
+app.use(paymentRoutes); // for payment purpose
 app.set('view engine','ejs'); // set the view engine as express.JS
 // creating various routes
 app.get('/', (req,res) =>{
