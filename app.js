@@ -3,6 +3,7 @@ const express = require('express'); // require express
 const mongoose=require('mongoose'); // require mongoose for connecting to MongoDB
 const morgan=require('morgan'); // required morgan for creating middlewares
 const passport=require('passport'); // required passport for authentication stretegy
+const stripe=require('stripe')('process.env.STRIPE_SECRET_KEY'); // required for stripe payment gateway integration
 const expressSession=require('express-session');
 const blogRoutes=require('./routes/blogRoutes');// required for creating express router
 const userRoutes=require('./routes/userRoutes'); // required for creating authentication routes
