@@ -13,3 +13,5 @@ socket.io(web socket) - for creating realtime connection for chatroom
 Each and everyone, is welcomed to contribute in this project. Please have a good look on the source code, raise issues and bugs tery to solve i will review and merge it.
 
 Please go through the dependencies in the package.json file to run the web app.
+
+I welcome everyone to contribute to this project, Thanks in advance!!!!!!!!.
