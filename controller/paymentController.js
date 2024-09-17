@@ -22,8 +22,8 @@ const payment_post = async (req, res) => {
       }
     ],
     mode: "payment",
-    success_url: `${process.env.remote_url}/complete?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.remote_url}/cancelled`,
+    success_url: `${process.env.local_url}/complete?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.local_url}/cancelled`,
   });
   res.redirect(session.url);
 };
@@ -39,12 +39,14 @@ const payment_get_success = async (req, res) => {
     const amount=tag[0].amount_total/100;
     const exists=await Donor.findOne({userName: userName});
     if(exists){
-        // console.log(exists);
         let currAmount=Number(exists.amount);
         let inNamount=Number(amount);
         let newAmountinN=inNamount+currAmount;
-        const updateAmount=toString(newAmountinN);
-        Donor.findOneAndUpdate({userName:userName},{userName,updateAmount},{new:true})
+        const updateAmount=newAmountinN.toString();
+        const id=exists._id;
+        exists.amount=updateAmount;
+        console.log(id);
+        Donor.findOneAndUpdate(id,exists,{new:true})
             .then((result)=>{
                 // console.log(result);
             })
