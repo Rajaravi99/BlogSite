@@ -46,7 +46,7 @@ const payment_get_success = async (req, res) => {
         const updateAmount=toString(newAmountinN);
         Donor.findOneAndUpdate({userName:userName},{userName,updateAmount},{new:true})
             .then((result)=>{
-                console.log(result);
+                // console.log(result);
             })
             .catch((err)=>{
                 console.log(err);
