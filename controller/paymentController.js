@@ -22,8 +22,8 @@ const payment_post = async (req, res) => {
       }
     ],
     mode: "payment",
-    success_url: `${process.env.local_url}/complete?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.local_url}/cancelled`,
+    success_url: `${process.env.remote_url}/complete?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${process.env.remote_url}/cancelled`,
   });
   res.redirect(session.url);
 };
