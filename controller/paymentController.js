@@ -48,7 +48,7 @@ const payment_get_success = async (req, res) => {
         console.log(id);
         Donor.findOneAndUpdate(id,exists,{new:true})
             .then((result)=>{
-                // console.log(result);
+                console.log(result);
             })
             .catch((err)=>{
                 console.log(err);
