@@ -88,7 +88,7 @@ const blog_delete_comment=async(req,res)=>{
     const exists=await Blog.findById(req.params.id);
     if(exists){
         const arr=exists.comment;
-        const str=req.body.data;
+        const str=req.params.data;
         let idx=-1;
         for(let i=0;i<arr.length;i++){
             if(arr[i].comment===str){
@@ -97,8 +97,8 @@ const blog_delete_comment=async(req,res)=>{
             }
         }
         if(idx!=-1){
-            const newArr=arr.splice(idx,1);
-            exists.comment=newArr;
+            arr.splice(idx,1);
+            exists.comment=arr;
             Blog.findByIdAndUpdate(req.params.id,exists,{new:true})
             .then((result)=>{
                 res.redirect(`/blogs/${req.params.id}`);

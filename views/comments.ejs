@@ -8,8 +8,8 @@
     <% if (comment.length > 0) { %>
       <% comment.forEach(comment => { %>
         <p class="snippet"><%= comment.comment %></p>
-        <form action="/blog/delete/<%=blogs._id%>">
-            <a><button>Delete</button></a>
+        <form action="/blog/delete/<%=blogs._id%>/<%= comment.comment %>"  method="POST">  
+          <input type="submit" value="button">
         </form>
       <% }) %>
     <% } else { %>
@@ -17,21 +17,21 @@
     <% } %>
   <%- include("./partials/footer.ejs") %>
      <script>
-        const blogId='<%- blogs._id %>';
-        const btn=document.querySelector('button');
-        btn.addEventListener('click',async (e)=>{
-            e.preventDefault();
-            const data=document.querySelector('.snippet');
-            await fetch(`http://localhost:${3000}/blog/delete/${blogId}`,{
-                method:'POST',
-                headers: {
-                    "Content-Type": "application/json;charset=UTF-8"
-                },
-                body: JSON.stringify({data:data.textContent})
-            });
-            e.stopPropagation();
-            console.log('reached');
-        },true);
+        // const blogId='<%- blogs._id %>';
+        // const btn=document.querySelector('.del');
+        // console.log(btn);
+        // btn.addEventListener('click',async (e)=>{
+        //     const data=document.querySelector('.snippet');
+        //     await fetch(`http://localhost:${3000}/blog/delete/${blogId}`,{
+        //         method:'POST',
+        //         headers: {
+        //             "Content-Type": "application/json;charset=UTF-8"
+        //         },
+        //         body: JSON.stringify({data:data.textContent})
+        //     });
+        //     // e.stopPropagation();
+        //     console.log('reached');
+        // },false);
      </script>
 </body>
 </html>
