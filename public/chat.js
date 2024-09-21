@@ -1,6 +1,6 @@
 // Query DOM
-const socket=io('https://blogsite-r2mj.onrender.com'); // in production 
-//const socket=io('http://localhost:3000'); // in development testing
+// const socket=io('https://blogsite-r2mj.onrender.com'); // in production 
+const socket=io('http://localhost:3000'); // in development testing
 var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),

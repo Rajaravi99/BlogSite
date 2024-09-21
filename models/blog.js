@@ -12,11 +12,12 @@ const blogSchema=new Schema({
     body:{
         type:String,
         required:true
-    }
-    ,author:{
+    },
+    author:{
         type:String,
         required:true
-    }
+    },
+    comment:[{}]
 },{timestamps:true});
 // exporting model of the schema created
 const blog=mongoose.model('blog', blogSchema);
