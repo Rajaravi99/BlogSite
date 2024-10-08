@@ -8,6 +8,7 @@ const expressSession=require('express-session'); // required for creating and ma
 const blogRoutes=require('./routes/blogRoutes');// required for creating express router
 const userRoutes=require('./routes/userRoutes'); // required for creating authentication routes
 const paymentRoutes=require('./routes/paymentRoutes'); // required for handeling stripe payment gateway
+const feedbackRoutes=require('./routes/feedbackRoutes');// required to load feedback form functionality 
 const Blog=require('./models/blog'); // required blog schema and model
 const User=require('./models/user.js'); // required user schems if needed
 const socket=require('socket.io'); // require socket to create websockets for chatroom
@@ -59,6 +60,7 @@ app.use(blogRoutes); // for creating blogroutes
 app.use(userRoutes); // for creating authentication and user login and signup
 app.use(chatRoutes); // for creating chatroom
 app.use(paymentRoutes); // for payment purpose
+app.use(feedbackRoutes); // for feedback form functionality
 app.set('view engine','ejs'); // set the view engine as express.JS
 // creating various routes
 app.get('/', (req,res) =>{
@@ -91,4 +93,6 @@ app.get('/about', (req,res) =>{
 app.use((req,res) =>{
     res.status(404).render('404',{title: '404'});
 });
+
+// need to implement feature of feedback forms of what can be improved on this website
 

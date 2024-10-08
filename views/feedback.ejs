@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="/authenticationStyles.css">
+    <script>
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Feedback Form</h2>
+        <form action="/feedback" method="POST">
+          <div class="form-group">
+            <label for="name">Your Good Name</label>
+            <input type="text" id="userName" name="name" placeholder="Enter your name" required autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="suggestion">Enter your suggestions here</label>
+            <input type="text" id="password" name="suggestion" placeholder="Your feedback" required>
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+      <%- include("./partials/footer.ejs") %>
+</body>
+</html>
