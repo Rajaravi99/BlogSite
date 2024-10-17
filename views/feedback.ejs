@@ -24,5 +24,11 @@
         </form>
       </div>
       <%- include("./partials/footer.ejs") %>
+      <script>
+        const btn=document.querySelector('button');
+        btn.addEventListener('click',(event)=>{
+            alert('Thanks for your suggestion, we will surely think over it');
+        },false);
+      </script>
 </body>
 </html>

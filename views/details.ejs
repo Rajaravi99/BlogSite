@@ -24,7 +24,8 @@
     <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
   </div>
   <a href="/blogs/comment/<%= blogs._id %>">Add comment</a><br>
-  <a href="/blog/comment/view/<%= blogs._id %>">view comments</a>
+  <a href="/blog/comment/view/<%= blogs._id %>">view comments</a><br>
+  <a href="/blog/email/<%= blogs._id %>">Send this to my Email</a>
   <%- include("./partials/footer.ejs") %>
   <script src="/details.js"></script>
 </body>
