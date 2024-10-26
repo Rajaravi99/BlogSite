@@ -3,7 +3,7 @@
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<%- include("./partials/header.ejs") %>
+ <%- include("./partials/header.ejs") %>
 
 <body>
   <%- include("./partials/nav.ejs") %>
@@ -18,20 +18,15 @@
     <a class="update" data-doc="<%= blogs._id %>" href="/blogs/e/<%= blogs._id %>"><button>Edit Blog</button></a>
     <a class="delete" data-doc="<%= blogs._id %>">delete</a>
   </div>
-
+  <div>
+    <button onclick="shareOnFacebook()">Share on Facebook</button>
+    <button onclick="shareOnTwitter()">Share on Twitter</button>
+    <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
+  </div>
+  <a href="/blogs/comment/<%= blogs._id %>">Add comment</a><br>
+  <a href="/blog/comment/view/<%= blogs._id %>">view comments</a><br>
+  <a href="/blog/email/<%= blogs._id %>">Send this to my Email</a>
   <%- include("./partials/footer.ejs") %>
-  <script>
-    const trashcan = document.querySelector('a.delete');
-    trashcan.addEventListener('click', (e) => {
-    const endpoint = `/blogs/${trashcan.dataset.doc}`;
-    fetch(endpoint, {
-        method: 'DELETE',
-    })
-    .then(response => response.json())
-    .then(data => window.location.href = data.redirect)
-    .catch(err => console.log(err));
-    });
-    
-  </script>
+  <script src="/details.js"></script>
 </body>
 </html>

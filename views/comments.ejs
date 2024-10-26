@@ -1,0 +1,23 @@
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+<body>
+  <%- include("./partials/nav.ejs") %>
+</div>
+  <div class="blogs content">
+    <h2>All Comments</h2>
+    <% if (comment.length > 0) { %>
+      <% comment.forEach(comment => { %>
+        <p class="snippet"><%= comment.comment %></p>
+        <form action="/blog/delete/<%=blogs._id%>/<%= comment.comment %>"  method="POST">  
+          <input type="submit" value="delete" style="cursor: pointer;">
+        </form>
+      <% }) %>
+    <% } else { %>
+      <p>There are no comments for this blog...</p>
+    <% } %>
+  <%- include("./partials/footer.ejs") %>
+     <script>
+        
+     </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html lang="en"></html>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<%- include("./partials/header.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <div class="create-blog content">
+    <h2><%= title %></h2>
+    <form action="/blogs/comment/<%=blogs._id%>" method="POST">
+      <label for="comment">New comment:</label>
+      <input  type="text" id="comment" name="comment" value=" " required></input>
+      <a class="update-form" data-doc="<%=blogs._id %>"><button>submit</button></a>
+    </form>
+  </div>
+  <%- include("./partials/footer.ejs") %>
+  <script>
+    // const updateData = document.querySelector('a.update-form');
+    // updateData.addEventListener('click', (e) => {
+    // const pt = `/blogs/${updateData.dataset.doc}`;
+    // fetch(pt,{method:'POST',})
+    // .then(response => response.json())
+    // .then(data => window.location.href = data.redirect)
+    // .catch(err => console.log(err));
+    // });
+  </script>
+</body>
+</html>

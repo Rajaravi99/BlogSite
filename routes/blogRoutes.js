@@ -12,5 +12,11 @@ router.get('/blogs/:id',blogController.blog_details);
 router.get('/blogs/e/:id',isAuthenticated,blogController.blog_edit_get); // to achive this user needs to be authenticated or loggedin
 router.delete('/blogs/:id',blogController.blog_delete);
 router.post('/blogs/:id',isAuthenticated,blogController.blog_edit_put); // to achive this user needs to be authenticated or loggedin
+router.get('/blogs/comment/:id',isAuthenticated,blogController.blog_get_comment); // api route to handle add comment form response
+router.post('/blogs/comment/:id',blogController.blog_post_comment); // this api route handles any new added comments
+router.get('/blog/comment/view/:id',blogController.blog_get_comments); // this api route handles viewing of all the comments for any specific blog
+router.post('/blog/delete/:id/:data',blogController.blog_delete_comment); // this api route handles deleting of comments something broken here
+router.get('/blog/email/:id',blogController.blog_get_email); // this loads a page where user can enter his email to get the blog data
+router.post('/blog/email/:id',blogController.blog_email_post);
 
 module.exports=router;
