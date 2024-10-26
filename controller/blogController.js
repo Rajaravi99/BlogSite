@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { json } = require('express');
 const Blog=require('../models/blog');
 const User=require('../models/user');
 const nodemailer=require('nodemailer');
@@ -143,6 +144,12 @@ const blog_email_post=(req,res)=>{
             },
         });
         console.log(req.body);
+        console.log(result);
+        let obj={
+            title:`${result.title}`,
+            body:`${result.body}`,
+            author:`${result.author}`,
+        }
         const mailOptions={
             from: {
                 name: 'BlogChat Server',
@@ -150,8 +157,7 @@ const blog_email_post=(req,res)=>{
             }, // sender address
             to: [req.body.email], // list of receivers
             subject: "Blog from BlogChat server", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
+            text: JSON.stringify(obj), // plain text body
         }
 
         const sendMail=async(transporter, mailOptions)=>{
