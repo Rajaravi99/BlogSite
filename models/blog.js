@@ -17,6 +17,9 @@ const blogSchema=new Schema({
         type:String,
         required:true
     },
+    links:{
+        type:String
+    },
     comment:[{}]
 },{timestamps:true});
 // exporting model of the schema created
